@@ -198,10 +198,8 @@
             <button class="tab-btn" onclick="switchTab(2)">Level 2 (심화)</button>
         </div>
         
-        <div id="level1-list" class="chapter-list">
-            </div>
-        <div id="level2-list" class="chapter-list" style="display: none;">
-            </div>
+        <div id="level1-list" class="chapter-list"></div>
+        <div id="level2-list" class="chapter-list" style="display: none;"></div>
     </div>
 
     <div id="quiz-screen" class="screen">
@@ -233,13 +231,6 @@
 </div>
 
 <script>
-    // ==========================================
-    // [선생님 데이터 영역] 여기에 문제 데이터를 넣으세요.
-    // 현재는 샘플 데이터가 들어있습니다. 
-    // 앞서 제가 만들어드린 20문제 JSON 데이터를 복사해서
-    // 해당 챕터의 'questions' 배열 안에 붙여넣으시면 됩니다.
-    // ==========================================
-    
     const curriculum = {
         level1: [
             { 
@@ -267,33 +258,6 @@
                     { q: "다음 우리말을 영어로 바르게 옮긴 것을 고르세요.\n'나는 학생이 아니다.'", a: [{text:"I not a student.", isCorrect:false, msg:"동사 없음."}, {text:"I am not a student.", isCorrect:true, msg:"Be동사 뒤에 not."}, {text:"I don't a student.", isCorrect:false, msg:"명사 앞엔 Be동사 부정."}, {text:"I doesn't a student.", isCorrect:false, msg:"문법 오류."}] },
                     { q: "다음 빈칸에 공통으로 들어갈 단어는?\n1. He _____ a teacher.\n2. She _____ tall.", a: [{text:"am", isCorrect:false, msg:""}, {text:"are", isCorrect:false, msg:""}, {text:"is", isCorrect:true, msg:"둘 다 3인칭 단수 주어입니다."}, {text:"do", isCorrect:false, msg:""}] },
                     { q: "다음 중 틀린 문장을 고르세요.", a: [{text:"I like music.", isCorrect:false, msg:"맞는 문장."}, {text:"She goes to school.", isCorrect:false, msg:"맞는 문장."}, {text:"He don't like pizza.", isCorrect:true, msg:"He doesn't가 맞습니다."}, {text:"They are busy.", isCorrect:false, msg:"맞는 문장."}] }
-                ]
-            },
-           { 
-                id: 'l2c1', 
-                title: 'Chapter 1. 명사 수식', 
-                desc: '관계대명사와 관계부사', 
-                questions: [
-                    { q: "다음 빈칸에 알맞은 관계대명사를 고르세요.\nI met a girl _____ plays the piano well.", a: [{text:"who", isCorrect:true, msg:"사람 주격"}, {text:"which", isCorrect:false, msg:"사물용"}, {text:"whose", isCorrect:false, msg:"소유격"}, {text:"whom", isCorrect:false, msg:"목적격"}] },
-                    { q: "다음 빈칸에 알맞은 관계대명사를 고르세요.\nThis is the book _____ I bought yesterday.", a: [{text:"which", isCorrect:true, msg:"사물 목적격"}, {text:"who", isCorrect:false, msg:"사람용"}, {text:"what", isCorrect:false, msg:"선행사 있음"}, {text:"where", isCorrect:false, msg:"장소 아님"}] },
-                    { q: "다음 중 밑줄 친 부분이 어법상 어색한 것은?", a: [{text:"This is the dog which I like it.", isCorrect:true, msg:"it 중복"}, {text:"The man who lives next door is kind.", isCorrect:false, msg:"맞음"}, {text:"Look at the boy that is running.", isCorrect:false, msg:"맞음"}, {text:"I have a friend whose name is Tom.", isCorrect:false, msg:"맞음"}] },
-                    { q: "다음 빈칸에 들어갈 말로 알맞지 않은 것은?\nShe is the singer _____ everyone loves.", a: [{text:"which", isCorrect:true, msg:"사람 선행사라 불가"}, {text:"who", isCorrect:false, msg:"가능"}, {text:"whom", isCorrect:false, msg:"가능"}, {text:"that", isCorrect:false, msg:"가능"}] },
-                    { q: "다음 두 문장을 한 문장으로 바르게 연결한 것은?\n'I have a brother. He plays soccer well.'", a: [{text:"I have a brother who plays soccer well.", isCorrect:true, msg:"Who로 연결"}, {text:"I have a brother which plays soccer well.", isCorrect:false, msg:"Which 불가"}, {text:"I have a brother whom plays soccer well.", isCorrect:false, msg:"Whom 불가(주격)"}, {text:"I have a brother plays soccer well.", isCorrect:false, msg:"연결사 없음"}] },
-                    { q: "다음 빈칸에 알맞은 관계사를 고르세요.\nThis is _____ I want.", a: [{text:"what", isCorrect:true, msg:"선행사 없음(~하는 것)"}, {text:"that", isCorrect:false, msg:"선행사 필요"}, {text:"which", isCorrect:false, msg:"선행사 필요"}, {text:"who", isCorrect:false, msg:"선행사 필요"}] },
-                    { q: "다음 중 생략할 수 있는 관계대명사는?", a: [{text:"This is the cake (which) I made.", isCorrect:true, msg:"목적격 생략 가능"}, {text:"I know the girl (who) is sitting there.", isCorrect:false, msg:"주격 불가"}, {text:"Look at the dog (which) is running.", isCorrect:false, msg:"주격 불가"}, {text:"The man (who) bought the car is rich.", isCorrect:false, msg:"주격 불가"}] },
-                    { q: "다음 빈칸에 알맞은 단어를 고르세요.\n_____ is important is trust.", a: [{text:"What", isCorrect:true, msg:"주어 역할(중요한 것)"}, {text:"That", isCorrect:false, msg:"불완전 문장"}, {text:"Which", isCorrect:false, msg:"선행사 없음"}, {text:"This", isCorrect:false, msg:"연결 안 됨"}] },
-                    { q: "다음 빈칸에 알맞은 관계부사를 고르세요.\nThis is the park _____ we played soccer.", a: [{text:"where", isCorrect:true, msg:"장소 + 완전한 문장"}, {text:"which", isCorrect:false, msg:"뒤 문장 완전함"}, {text:"when", isCorrect:false, msg:"시간 아님"}, {text:"why", isCorrect:false, msg:"이유 아님"}] },
-                    { q: "다음 빈칸에 알맞은 단어를 고르세요.\nDo you remember the day _____ we first met?", a: [{text:"when", isCorrect:true, msg:"시간 + 완전한 문장"}, {text:"which", isCorrect:false, msg:"문장 완전함"}, {text:"where", isCorrect:false, msg:"장소 아님"}, {text:"what", isCorrect:false, msg:"선행사 있음"}] },
-                    { q: "다음 빈칸에 들어갈 말이 나머지 셋과 다른 하나는?", a: [{text:"This is the house _____ I live.", isCorrect:true, msg:"Where (Live는 자동사)"}, {text:"This is the house _____ I live in.", isCorrect:false, msg:"Which (전치사 목적어 없음)"}, {text:"This is the house _____ I bought.", isCorrect:false, msg:"Which (목적어 없음)"}, {text:"This is the house _____ I built.", isCorrect:false, msg:"Which (목적어 없음)"}] },
-                    { q: "다음 빈칸에 알맞은 말은?\nThe man _____ you met yesterday is my uncle.", a: [{text:"who", isCorrect:true, msg:"목적격(whom) 대신 가능"}, {text:"which", isCorrect:false, msg:"사람임"}, {text:"what", isCorrect:false, msg:"선행사 있음"}, {text:"whose", isCorrect:false, msg:"소유격 아님"}] },
-                    { q: "다음 빈칸에 알맞은 단어를 고르세요.\nHe has two sons, _____ are doctors.", a: [{text:"who", isCorrect:true, msg:"콤마 뒤 계속적 용법"}, {text:"that", isCorrect:false, msg:"콤마 뒤 불가"}, {text:"which", isCorrect:false, msg:"사람임"}, {text:"what", isCorrect:false, msg:"콤마 뒤 불가"}] },
-                    { q: "다음 중 생략 가능한 부분을 고르세요.", a: [{text:"The girl (who is) singing is Jane.", isCorrect:true, msg:"주격+Be 생략 가능"}, {text:"The boy (who) likes pizza is Tom.", isCorrect:false, msg:"일반동사 앞 불가"}, {text:"This is the house (where) I live.", isCorrect:false, msg:"관계대명사 문제라면 1번"}, {text:"I know the man (that) lives here.", isCorrect:false, msg:"주격 불가"}] },
-                    { q: "다음 문장의 빈칸에 들어갈 수 없는 말은?\nThis is the restaurant _____ we ate lunch.", a: [{text:"which", isCorrect:true, msg:"완전한 문장이므로 불가"}, {text:"where", isCorrect:false, msg:"가능"}, {text:"at which", isCorrect:false, msg:"가능"}, {text:"that", isCorrect:false, msg:"가능(관계부사 대용)"}] },
-                    { q: "다음 우리말과 일치하도록 빈칸을 채우세요.\n'그것이 내가 원하는 것이다.' = That is _____ I want.", a: [{text:"the thing which", isCorrect:true, msg:"what = the thing which"}, {text:"the thing what", isCorrect:false, msg:"what 중복"}, {text:"which", isCorrect:false, msg:"선행사 없음"}, {text:"that", isCorrect:false, msg:"선행사 없음"}] },
-                    { q: "다음 중 어법상 올바른 문장은?", a: [{text:"She is the only person that understands me.", isCorrect:true, msg:"only 수식 -> that 선호"}, {text:"This is the city which I was born.", isCorrect:false, msg:"in which/where"}, {text:"I like the movie that I saw it.", isCorrect:false, msg:"it 중복"}, {text:"Look at the house whose the roof is red.", isCorrect:false, msg:"the 생략해야 함"}] },
-                    { q: "다음 빈칸에 알맞은 단어를 고르세요.\nI finished the work, _____ made me tired.", a: [{text:"which", isCorrect:true, msg:"앞 문장 전체 수식"}, {text:"who", isCorrect:false, msg:"사람 아님"}, {text:"that", isCorrect:false, msg:"콤마 뒤 불가"}, {text:"what", isCorrect:false, msg:"콤마 뒤 불가"}] },
-                    { q: "다음 빈칸에 알맞은 소유격 관계대명사를 고르세요.\nI saw a dog _____ tail is short.", a: [{text:"whose", isCorrect:true, msg:"그 개'의' 꼬리"}, {text:"who", isCorrect:false, msg:"주격"}, {text:"which", isCorrect:false, msg:"소유격 아님"}, {text:"that", isCorrect:false, msg:"소유격 없음"}] },
-                    { q: "다음 문장의 빈칸에 들어갈 말로 알맞은 것은?\nThe museum _____ we visited was huge.", a: [{text:"which", isCorrect:true, msg:"Visit의 목적어"}, {text:"where", isCorrect:false, msg:"Visit은 타동사"}, {text:"when", isCorrect:false, msg:"장소임"}, {text:"what", isCorrect:false, msg:"선행사 있음"}] }
                 ]
             },
             { 
@@ -377,6 +341,35 @@
                     { q: "다음 빈칸에 공통으로 들어갈 접속사는?\n1. _____ you are busy, I will help you.\n2. I study hard _____ I want to be a doctor.", a: [{text:"Because", isCorrect:true, msg:"둘 다 '이유'"}, {text:"If", isCorrect:false, msg:"2번 어색"}, {text:"When", isCorrect:false, msg:"2번 어색"}, {text:"Before", isCorrect:false, msg:"불가"}] }
                 ]
             },
+            { 
+                id: 'l1c5', 
+                title: 'Chapter 5. 세밀한 묘사', 
+                desc: '형용사, 부사, 비교급', 
+                questions: [
+                    { q: "다음 빈칸에 알맞은 단어를 고르세요.\nShe looks _____ today.", a: [{text:"happy", isCorrect:true, msg:"감각동사 + 형용사"}, {text:"happily", isCorrect:false, msg:"부사 불가"}, {text:"happiness", isCorrect:false, msg:"명사 불가"}, {text:"happier", isCorrect:false, msg:"비교 대상 없음"}] },
+                    { q: "다음 빈칸에 알맞은 단어를 고르세요.\nHe runs very _____.", a: [{text:"fast", isCorrect:true, msg:"fast는 부사도 fast"}, {text:"fastly", isCorrect:false, msg:"없는 단어"}, {text:"fastest", isCorrect:false, msg:"최상급 어색"}, {text:"fastness", isCorrect:false, msg:"명사"}] },
+                    { q: "다음 빈칸에 알맞은 단어를 고르세요.\nI have _____ friends.", a: [{text:"many", isCorrect:true, msg:"셀 수 있는 복수 명사"}, {text:"much", isCorrect:false, msg:"셀 수 없는 명사"}, {text:"a little", isCorrect:false, msg:"셀 수 없는 명사"}, {text:"little", isCorrect:false, msg:"셀 수 없는 명사"}] },
+                    { q: "다음 중 빈도부사(always)의 위치가 바른 문장은?", a: [{text:"He is always kind.", isCorrect:true, msg:"Be동사 뒤"}, {text:"He always is kind.", isCorrect:false, msg:"위치 틀림"}, {text:"Always he is kind.", isCorrect:false, msg:"어색"}, {text:"He is kind always.", isCorrect:false, msg:"어색"}] },
+                    { q: "다음 중 빈도부사(usually)의 위치가 바른 문장은?", a: [{text:"I usually get up early.", isCorrect:true, msg:"일반동사 앞"}, {text:"I get up usually early.", isCorrect:false, msg:"위치 틀림"}, {text:"I get up early usually.", isCorrect:false, msg:"어색"}, {text:"Usually I get up early.", isCorrect:false, msg:"강조(정답 가능하지만 1번이 정석)"}] },
+                    { q: "다음 단어의 비교급 형태가 틀린 것은?", a: [{text:"big - biger", isCorrect:true, msg:"bigger (g 하나 더)"}, {text:"tall - taller", isCorrect:false, msg:"맞음"}, {text:"heavy - heavier", isCorrect:false, msg:"맞음"}, {text:"nice - nicer", isCorrect:false, msg:"맞음"}] },
+                    { q: "다음 빈칸에 알맞은 단어를 고르세요.\nThis flower smells _____.", a: [{text:"sweet", isCorrect:true, msg:"감각동사 + 형용사"}, {text:"sweetly", isCorrect:false, msg:"부사 불가"}, {text:"sweety", isCorrect:false, msg:"어색"}, {text:"more sweetly", isCorrect:false, msg:"불가"}] },
+                    { q: "다음 빈칸에 알맞은 단어를 고르세요.\nMath is _____ than English.", a: [{text:"more difficult", isCorrect:true, msg:"긴 단어는 more"}, {text:"difficult", isCorrect:false, msg:"원급 불가"}, {text:"difficulter", isCorrect:false, msg:"없는 단어"}, {text:"most difficult", isCorrect:false, msg:"최상급"}] },
+                    { q: "다음 문장의 빈칸에 들어갈 말로 알맞은 것은?\nHe is the _____ student in my class.", a: [{text:"smartest", isCorrect:true, msg:"the + 최상급"}, {text:"smart", isCorrect:false, msg:"원급"}, {text:"smarter", isCorrect:false, msg:"비교급"}, {text:"most smart", isCorrect:false, msg:"est 붙여야 함"}] },
+                    { q: "다음 불규칙 변화가 바르게 짝지어진 것은?", a: [{text:"many - more - most", isCorrect:true, msg:"정답!"}, {text:"good - gooder - goodest", isCorrect:false, msg:"better - best"}, {text:"bad - badder - baddest", isCorrect:false, msg:"worse - worst"}, {text:"little - littler - littlest", isCorrect:false, msg:"less - least"}] },
+                    { q: "다음 빈칸에 알맞은 단어를 고르세요.\nI don't have _____ money.", a: [{text:"much", isCorrect:true, msg:"돈은 셀 수 없음"}, {text:"many", isCorrect:false, msg:"셀 수 있음"}, {text:"few", isCorrect:false, msg:"셀 수 있음"}, {text:"a few", isCorrect:false, msg:"셀 수 있음"}] },
+                    { q: "다음 두 문장의 뜻이 같도록 빈칸을 채우세요.\n'He is a good swimmer.' = He swims _____.", a: [{text:"well", isCorrect:true, msg:"good의 부사는 well"}, {text:"good", isCorrect:false, msg:"형용사"}, {text:"goodly", isCorrect:false, msg:"없는 단어"}, {text:"nice", isCorrect:false, msg:"형용사"}] },
+                    { q: "다음 중 어법상 틀린 문장을 고르세요.", a: [{text:"She runs slow.", isCorrect:true, msg:"slowly가 맞음(부사)"}, {text:"This cake tastes sweet.", isCorrect:false, msg:"맞음"}, {text:"He works hard.", isCorrect:false, msg:"맞음"}, {text:"I get up early.", isCorrect:false, msg:"맞음"}] },
+                    { q: "다음 빈칸에 알맞은 말을 고르세요.\nWinter is _____ than summer.", a: [{text:"colder", isCorrect:true, msg:"비교급 + than"}, {text:"cold", isCorrect:false, msg:"원급"}, {text:"more cold", isCorrect:false, msg:"짧은 단어"}, {text:"coldest", isCorrect:false, msg:"최상급"}] },
+                    { q: "다음 빈칸에 알맞은 말을 고르세요.\nMount Everest is the _____ mountain in the world.", a: [{text:"highest", isCorrect:true, msg:"the + 최상급"}, {text:"high", isCorrect:false, msg:"원급"}, {text:"higher", isCorrect:false, msg:"비교급"}, {text:"most high", isCorrect:false, msg:"est"}] },
+                    { q: "다음 중 짝지어진 단어의 관계가 나머지와 다른 하나는?", a: [{text:"hard - hardly", isCorrect:true, msg:"뜻이 달라짐 (열심히 vs 거의~않는)"}, {text:"slow - slowly", isCorrect:false, msg:"형-부"}, {text:"quick - quickly", isCorrect:false, msg:"형-부"}, {text:"beautiful - beautifully", isCorrect:false, msg:"형-부"}] },
+                    { q: "다음 빈칸에 알맞은 단어를 고르세요.\nThere is a _____ water in the bottle.", a: [{text:"little", isCorrect:true, msg:"a little = 조금 있는"}, {text:"few", isCorrect:false, msg:"불가"}, {text:"a few", isCorrect:false, msg:"a 중복/불가"}, {text:"a little", isCorrect:false, msg:"a 중복"}] },
+                    { q: "다음 문장의 빈칸에 들어갈 말로 알맞은 것은?\nYour idea sounds _____.", a: [{text:"great", isCorrect:true, msg:"감각동사 + 형용사"}, {text:"greatly", isCorrect:false, msg:"부사"}, {text:"well", isCorrect:false, msg:"부사(잘)"}, {text:"nicely", isCorrect:false, msg:"부사"}] },
+                    { q: "다음 중 비교급 형태가 올바른 것은?", a: [{text:"better", isCorrect:true, msg:"good/well의 비교급"}, {text:"happyer", isCorrect:false, msg:"happier"}, {text:"hoter", isCorrect:false, msg:"hotter"}, {text:"more easy", isCorrect:false, msg:"easier"}] },
+                    { q: "다음 우리말을 영어로 바르게 옮긴 것은?\n'그는 그의 형보다 더 키가 크다.'", a: [{text:"He is taller than his brother.", isCorrect:true, msg:"비교급 + than"}, {text:"He is tall than his brother.", isCorrect:false, msg:"원급"}, {text:"He is more tall than his brother.", isCorrect:false, msg:"more 불가"}, {text:"He is the tallest his brother.", isCorrect:false, msg:"최상급 불가"}] }
+                ]
+            }
+        ],
+        level2: [
             { 
                 id: 'l2c1', 
                 title: 'Chapter 1. 명사 수식', 
@@ -512,37 +505,21 @@
                     { q: "다음 글의 결론(Conclusion)으로 가장 적절한 연결어는?\n'Books give knowledge and pleasure. _____, reading is beneficial.'", a: [{text:"Therefore", isCorrect:true, msg:"결론"}, {text:"However", isCorrect:false, msg:"반대"}, {text:"For example", isCorrect:false, msg:"예시"}, {text:"First", isCorrect:false, msg:"시작"}] }
                 ]
             }
-        ],
-        level2: [
-            { id: 'l2c1', title: 'Chapter 1. 명사 수식', desc: '관계대명사와 관계부사', questions: [
-                { q: "사람을 꾸며주는 관계대명사는?", a: [{text:"who", isCorrect:true, msg:"정답!"}, {text:"which", isCorrect:false, msg:"사물용"}, {text:"where", isCorrect:false, msg:"장소용"}, {text:"what", isCorrect:false, msg:"선행사 포함"}] }
-                // ... 여기에 Level 2 Ch 1 문제 붙여넣기
-            ]},
-            { id: 'l2c2', title: 'Chapter 2. 문장 압축', desc: '분사와 분사구문', questions: [] },
-            { id: 'l2c3', title: 'Chapter 3. 문장의 품격', desc: '가정법, 도치, 강조', questions: [] },
-            { id: 'l2c4', title: 'Chapter 4. 논리의 완성', desc: '접속사와 연결사', questions: [] },
-            { id: 'l2c5', title: 'Chapter 5. 실전 에세이', desc: '서술형 및 단락 쓰기', questions: [] }
         ]
     };
-
-    // ==========================================
-    // [시스템 로직 영역] 여기는 수정하지 않으셔도 됩니다.
-    // ==========================================
 
     let currentLevel = 1;
     let currentChapterIndex = 0;
     let currentQuestions = [];
     let currentQIndex = 0;
     let score = 0;
-    let wrongAnswers = []; // 오답 노트용
+    let wrongAnswers = [];
 
-    // 초기화
     window.onload = function() {
         renderChapterList();
     };
 
     function renderChapterList() {
-        // 레벨 1 목록 생성
         const l1Container = document.getElementById('level1-list');
         l1Container.innerHTML = curriculum.level1.map((ch, idx) => `
             <div class="chapter-card" onclick="startQuiz(1, ${idx})">
@@ -554,7 +531,6 @@
             </div>
         `).join('');
 
-        // 레벨 2 목록 생성
         const l2Container = document.getElementById('level2-list');
         l2Container.innerHTML = curriculum.level2.map((ch, idx) => `
             <div class="chapter-card" onclick="startQuiz(2, ${idx})">
@@ -593,17 +569,15 @@
             return;
         }
 
-        currentQuestions = chapterData.questions; // 원본 문제 가져오기
+        currentQuestions = chapterData.questions;
         currentQIndex = 0;
         score = 0;
         wrongAnswers = [];
 
-        // 화면 전환
         document.getElementById('home-screen').classList.remove('active');
         document.getElementById('result-screen').classList.remove('active');
         document.getElementById('quiz-screen').classList.add('active');
 
-        // 헤더 업데이트
         document.getElementById('chapter-badge').innerText = chapterData.title;
         
         loadQuestion();
@@ -612,14 +586,12 @@
     function loadQuestion() {
         const qData = currentQuestions[currentQIndex];
         
-        // UI 업데이트
         document.getElementById('question-count').innerText = `${currentQIndex + 1} / ${currentQuestions.length}`;
         document.getElementById('progress-fill').style.width = `${((currentQIndex) / currentQuestions.length) * 100}%`;
         document.getElementById('question-text').innerText = qData.q;
         document.getElementById('feedback-box').style.display = 'none';
         document.getElementById('next-btn').style.display = 'none';
 
-        // 보기 생성
         const optsContainer = document.getElementById('options-container');
         optsContainer.innerHTML = '';
         
@@ -635,7 +607,7 @@
     function checkAnswer(btn, opt, idx) {
         const optsContainer = document.getElementById('options-container');
         const allBtns = optsContainer.querySelectorAll('.option-btn');
-        allBtns.forEach(b => b.disabled = true); // 중복 클릭 방지
+        allBtns.forEach(b => b.disabled = true);
 
         const feedback = document.getElementById('feedback-box');
         feedback.style.display = 'block';
@@ -650,12 +622,10 @@
             feedback.innerHTML = `❌ <b>오답입니다.</b><br>${opt.msg}`;
             feedback.style.color = '#721c24';
             
-            // 정답 표시
             const qData = currentQuestions[currentQIndex];
             const correctIdx = qData.a.findIndex(o => o.isCorrect);
             allBtns[correctIdx].classList.add('correct');
 
-            // 오답 노트에 추가
             wrongAnswers.push({
                 q: qData.q,
                 wrong: opt.text,
@@ -683,7 +653,6 @@
         document.getElementById('final-score').innerText = score;
         document.getElementById('total-q').innerText = currentQuestions.length;
 
-        // 점수에 따른 메시지
         const percentage = (score / currentQuestions.length) * 100;
         const msg = document.getElementById('result-message');
         if (percentage === 100) msg.innerText = "완벽해요! 마스터하셨군요! 🎉";
@@ -703,25 +672,13 @@
             return;
         }
         
-        // 오답 리스트를 모달이나 별도 화면 대신, 퀴즈 화면을 재활용하여 보여줄 수도 있지만
-        // 간단하게 alert나 새 창으로 보여주는 방식 대신, 여기서는 알림으로 대체하거나
-        // 추후 기능 확장을 위해 간단한 메시지만 띄웁니다.
-        // *실제 구현 시*: 오답 배열을 currentQuestions로 교체하고 퀴즈를 다시 시작하게 할 수 있습니다.
-        
         if(confirm("틀린 문제만 모아서 다시 풀어보시겠습니까?")) {
-            // 틀린 문제만으로 퀴즈 재구성
-            currentQuestions = [];
-            // 오답 데이터 구조를 퀴즈 데이터 구조로 변환 (이미 구조가 같음, but 'a' 옵션 등은 원본 참조 필요)
-            // 여기서는 간단히 전체 퀴즈를 다시 풀게 하거나, 로직 확장이 필요함.
-            // 선생님 요청에 따라 '복습' 기능은 단순히 '다시 풀기'로 유도하거나
-            // 심화 로직을 짤 수 있습니다. 현재 코드는 '다시 풀기'를 권장합니다.
             alert("틀린 내용을 확인하며 전체를 다시 풀어보세요!");
             startQuiz(currentLevel, currentChapterIndex);
         }
     }
 
     function goToNextChapter() {
-        // 다음 챕터 계산
         let nextL = currentLevel;
         let nextC = currentChapterIndex + 1;
 
@@ -744,5 +701,4 @@
 </script>
 
 </body>
-
 </html>
